@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DelphiTools Auth Workbench</title>
+    <title>FreeAPI Auth Workbench</title>
+	<meta name="title" content="FreeAPI Auth Workbench">
+<meta name="description" content="A Simple Authentication Playground for FreeAPI">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://himanshubalani.com/freeapi-auth">
+<meta property="og:title" content="FreeAPI Auth Workbench">
+<meta property="og:description" content="A Simple Authentication Playground for FreeAPI">
+<meta property="og:site_name" content=" Free API Auth">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://himanshubalani.com/freeapi-auth">
+<meta property="twitter:title" content="FreeAPI Auth">
+<meta property="twitter:description" content="A Simple Authentication Playground for FreeAPI">
+<meta property="twitter:creator" content="himanshubalani5">
+
+
+	<!--icons-->
+	<link rel="icon" type="image/png" href="assets/favicon.png">
+	<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+
     <link rel="stylesheet" href="style.css">
-    <!-- 100% Monospace Typography Standard -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- Credit bar -->
+	<div class="credit-bar">
+		made by <a href="https://www.himanshubalani.com" target="_blank">himanshubalani.com</a>
+		| Read <a href="https://blog.himanshubalani.com/" target="_blank">Blog</a>
+	</div>
+
 
     <header class="page-header">
-        <h1 class="page-title">Auth_Workbench.exe</h1>
+        <h1 class="page-title">FreeAPI_Auth_</h1>
         <div id="status-badge" class="badge hidden">Status</div>
     </header>
 
@@ -19,10 +47,10 @@
         <!-- LEFT COLUMN: Control Panel (1/3 Width) -->
         <aside class="control-panel card">
             <div class="card-header">
-                <span class="sub-label">SESSION_CONTROLS</span>
+                <span class="sub-label">SESSION</span>
                 <div class="toolbar">
-                    <button class="btn-ghost" id="tab-login" onclick="toggleTab('login')">Login</button>
-                    <button class="btn-ghost" id="tab-register" onclick="toggleTab('register')">Register</button>
+                    <button class="btn-ghost" id="tab-login" onclick="toggleTab('login')" data-tooltip="Switch to login form">Login</button>
+                    <button class="btn-ghost" id="tab-register" onclick="toggleTab('register')" data-tooltip="Switch to registration">Register</button>
                 </div>
             </div>
             
@@ -37,10 +65,10 @@
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" required placeholder="••••••••">
                     </div>
-                    <button type="submit" class="btn-primary" id="btn-login">Authenticate</button>
+                    <button type="submit" class="btn-primary" id="btn-login" data-tooltip="POST /users/login">Authenticate</button>
                 </form>
 
-                <!-- REGISTER FORM (Hidden by default) -->
+                <!-- REGISTER FORM -->
                 <form id="register-form" class="form-stack hidden">
                     <div class="input-group">
                         <label for="reg-username">Username</label>
@@ -61,7 +89,7 @@
                             <option value="USER">USER</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-primary" id="btn-register">Create Account</button>
+                    <button type="submit" class="btn-primary" id="btn-register" data-tooltip="POST /users/register">Create Account</button>
                 </form>
             </div>
         </aside>
@@ -69,8 +97,11 @@
         <!-- RIGHT COLUMN: Output Area (2/3 Width) -->
         <main class="output-panel card">
             <div class="card-header">
-                <span class="sub-label">CURRENT_USER_OUTPUT</span>
-                <button class="btn-outline hidden" id="btn-logout">Terminate Session</button>
+                <div style="display: flex; align-items: center;">
+                    <span class="sub-label">CURRENT_USER_OUTPUT</span>
+                    <span class="api-label">GET /users/current-user</span>
+                </div>
+                <button class="btn-outline hidden" id="btn-logout" data-tooltip="POST /users/logout">Logout</button>
             </div>
             
             <div class="card-body" id="profile-display">
@@ -84,7 +115,7 @@
                     <div class="empty-subtitle">Please authenticate to view current user details.</div>
                 </div>
 
-                <!-- USER DATA RENDER (Hidden by default) -->
+                <!-- USER DATA RENDER -->
                 <div id="auth-state" class="hidden">
                     <div class="data-table" id="user-data-table">
                         <!-- Injected via JS -->

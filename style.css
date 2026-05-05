@@ -1,4 +1,4 @@
-/* DESIGN SYSTEM: "The Obsidian" (Monochrome & Tactile) */
+/* DESIGN SYSTEM: "The Athena" (Light Mode - White, Olive Green & Gold) */
 :root {
     /* Palette */
     --bg: #050505;
@@ -28,9 +28,30 @@ body {
     color: var(--text-primary);
     font-family: var(--font-mono);
     margin: 0;
-    padding: 32px;
+    padding: 20px 32px;
     line-height: 1.5;
 }
+
+/* CREDIT BAR */
+		.credit-bar {
+			width: 100%;
+			background: var(--dark-green);
+			color: rgba(255,255,255,0.55);
+			text-align: center;
+			font-size: 0.8rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			padding: 0rem 0;
+		}
+		.credit-bar a {
+			color: var(--peach);
+			text-decoration: underline;
+			font-weight: 500;
+			transition: opacity 0.2s;
+			color: #FFFFFF;
+		}
+		.credit-bar a:hover { text-decoration-color: #FFFFFF; }
+
 
 /* Typography Hierarchy */
 .page-header {
@@ -43,13 +64,61 @@ body {
     font-size: 24px;
     font-weight: 700;
     margin: 0;
+    color: var(--olive);
 }
 .sub-label {
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    color: var(--olive);
 }
+
+/* API Label */
+.api-label {
+    height: 36px;
+    padding: 0 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 50%;
+    left: 0%;
+    transform: translateX(-50%);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(85, 107, 47, 0.2);
+}
+[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+    bottom: 120%;
+}
+
 
 /* Layout System */
 .workbench {
@@ -68,7 +137,7 @@ body {
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-large);
-    overflow: hidden;
+    overflow: visible;
 }
 .card-header {
     padding: 16px 24px;
@@ -114,6 +183,21 @@ input:focus, select:focus {
     box-shadow: 0 0 0 3px rgba(255, 176, 0, 0.2); 
 }
 
+/* Dropdown specific */
+select {
+    appearance: none; /* remove default arrow */
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23888888" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 10px);
+    background-position-y: 50%;
+}
+select option {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+}
+
 /* Buttons */
 button {
     font-family: var(--font-mono);
@@ -129,7 +213,8 @@ button {
 }
 .btn-primary {
     height: 44px;
-    width: 100%;
+	align-self: self-end;
+    width: 60%;
     background-color: var(--accent);
     color: var(--bg);
     border: 1px solid var(--accent);
@@ -222,8 +307,8 @@ button {
 .badge {
     padding: 6px 12px;
     border-radius: var(--radius-pill);
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 500;
     text-transform: uppercase;
     border: 1px solid transparent;
 }
