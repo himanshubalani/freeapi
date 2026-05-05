@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DelphiTools Auth Workbench</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 100% Monospace Typography Standard -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="page-header">
+        <h1 class="page-title">Auth_Workbench.exe</h1>
+        <div id="status-badge" class="badge hidden">Status</div>
+    </header>
+
+    <div class="workbench">
+        <!-- LEFT COLUMN: Control Panel (1/3 Width) -->
+        <aside class="control-panel card">
+            <div class="card-header">
+                <span class="sub-label">SESSION_CONTROLS</span>
+                <div class="toolbar">
+                    <button class="btn-ghost" id="tab-login" onclick="toggleTab('login')">Login</button>
+                    <button class="btn-ghost" id="tab-register" onclick="toggleTab('register')">Register</button>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <!-- LOGIN FORM -->
+                <form id="login-form" class="form-stack">
+                    <div class="input-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" required placeholder="doejohn">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary" id="btn-login">Authenticate</button>
+                </form>
+
+                <!-- REGISTER FORM (Hidden by default) -->
+                <form id="register-form" class="form-stack hidden">
+                    <div class="input-group">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" required placeholder="doejohn">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" required placeholder="user@domain.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required placeholder="test@123">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-role">Role</label>
+                        <select id="reg-role" required>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="USER">USER</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary" id="btn-register">Create Account</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: Output Area (2/3 Width) -->
+        <main class="output-panel card">
+            <div class="card-header">
+                <span class="sub-label">CURRENT_USER_OUTPUT</span>
+                <button class="btn-outline hidden" id="btn-logout">Terminate Session</button>
+            </div>
+            
+            <div class="card-body" id="profile-display">
+                <!-- DROPZONE / EMPTY STATE -->
+                <div class="empty-state" id="unauth-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="muted-icon">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div class="empty-title">NO ACTIVE SESSION</div>
+                    <div class="empty-subtitle">Please authenticate to view current user details.</div>
+                </div>
+
+                <!-- USER DATA RENDER (Hidden by default) -->
+                <div id="auth-state" class="hidden">
+                    <div class="data-table" id="user-data-table">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
