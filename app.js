@@ -2,17 +2,13 @@ import { toolList } from './lib/tools.js';
 import { loadModule } from './lib/index.js';
 
 // --- ROUTER CONFIG ---
-const navigateTo = (url) => {
-    history.pushState(null, null, url);
-    router();
-};
 
 const router = async () => {
-    const path = window.location.pathname;
-    
-    // Fallback to the first tool if path matches root / or is not found
-    let activeTool = toolList.find(tool => path.endsWith(tool.href));
-    if (!activeTool) activeTool = toolList[0];
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+
+    let activeTool = toolList.find(tool => tool.id === q);
+    if (!activeTool) activeTool = toolList[0]; // fallback to first tool
 
     const appRoot = document.getElementById('app-root');
     const pageTitle = document.getElementById('current-page-title');
@@ -52,6 +48,11 @@ const router = async () => {
     }
 };
 
+const navigateTo = (id) => {
+    history.pushState(null, null, `?q=${id}`);
+    router();
+};
+
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Build Sidebar
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toolList.forEach(tool => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <a href="${tool.href}" data-link class="nav-link" id="nav-${tool.id}">
+           <a href="?q=${tool.id}" data-id="${tool.id}" data-link class="nav-link">
                 <div class="nav-title">${tool.name}</div>
                 <div class="nav-desc">${tool.description}</div>
             </a>`;
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = e.target.closest('[data-link]');
         if (link) {
             e.preventDefault();
-            navigateTo(link.getAttribute('href'));
+            navigateTo(link.getAttribute('data-id'));
         }
     });
 
