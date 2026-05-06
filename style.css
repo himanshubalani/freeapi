@@ -27,32 +27,46 @@ body {
     color: var(--text-primary);
     font-family: var(--font-mono);
     margin: 0;
-    padding: 20px 32px;
+    padding: 0; /* Changed to 0 so the top bar is flush */
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 a {
   text-decoration: none;
 }
 
 /* CREDIT BAR */
-		.credit-bar {
-			width: 100%;
-			background: var(--dark-green);
-			color: rgba(255,255,255,0.55);
-			text-align: center;
-			font-size: 0.8rem;
-			letter-spacing: 0.12em;
-			text-transform: uppercase;
-			padding: 0rem 0;
-		}
-		.credit-bar a {
-			color: var(--peach);
-			text-decoration: none;
-			font-weight: 500;
-			transition: opacity 0.2s;
-			color: #FFFFFF;
-		}
-		.credit-bar a:hover { text-decoration: underline; }
+.credit-bar {
+    width: 100%;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 0;
+    flex-shrink: 0;
+    z-index: 100;
+}
+.credit-bar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.2s;
+}
+.credit-bar a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Ensure app-layout fills the rest of the screen */
+.app-layout {
+    display: flex;
+    flex-grow: 1;
+}
 
 
 /* Typography Hierarchy */
@@ -711,4 +725,56 @@ button {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px); /* Tactical frosted glass effect */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content .card-body {
+    overflow-y: auto;
+}
+
+/* --- INTERACTIVE CARDS --- */
+.interactive-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.view-prompt {
+    margin-top: auto;
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease;
+}
+
+.interactive-card:hover .view-prompt {
+    opacity: 1;
+    transform: translateX(0);
 }
