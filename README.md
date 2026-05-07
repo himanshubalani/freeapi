@@ -2,17 +2,10 @@
 
 A high-performance, Vanilla JavaScript Single-Page Application (SPA) built to interact with various [FreeAPI](https://freeapi.app/) endpoints. 
 
-This project serves as a comprehensive collection of web development assignments (Web Dev Cohort 2026), seamlessly integrated into a single, unified "Digital Workbench" interface.
+This project serves as a collection of web development assignments (Web Dev Cohort 2026), seamlessly integrated into a single, unified interface.
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square)
 ![Tech Stack](https://img.shields.io/badge/Tech-Vanilla_JS_|_CSS3_|_HTML5-f3df49?style=flat-square&logo=javascript)
-
-## Design Philosophy: "The Obsidian Workbench"
-The interface abandons modern "bubbly" UI trends in favor of an unapologetically utilitarian, pragmatic, and information-dense visual language.
-* **Monochrome & Tactile:** Relies on perceptually uniform deep slate/blacks, warm off-whites, and amber accents.
-* **Structural Borders:** Uses 1px solid borders rather than drop shadows to define depth and grouping.
-* **100% Monospace:** Utilizes `JetBrains Mono` exclusively for a terminal/dossier aesthetic.
-* **Tactical UI:** Features ASCII progress bars, zero-padded IDs, and frosted-glass data modals.
 
 ## Key Features
 * **Zero Dependencies:** Built entirely with Vanilla ES6 JavaScript, HTML5, and pure CSS3. No React, no Tailwind, no bundlers required.
