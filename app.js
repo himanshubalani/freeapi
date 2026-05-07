@@ -19,9 +19,9 @@ const router = async () => {
     // Update Sidebar Active State
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === activeTool.href) {
-            link.classList.add('active');
-        }
+        if (link.dataset.id === activeTool.id) {
+    link.classList.add('active');
+}
     });
 
     try {
